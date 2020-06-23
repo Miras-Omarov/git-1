@@ -86,15 +86,23 @@ public class CRUD1 {
             String productPrice = product[1];
             String productQuantity = product[2];
 
-            while(productId.length() < 8) {
-                productId += " ";
+            StringBuilder productIdBuilder = new StringBuilder(productId);
+            StringBuilder productNameBuilder = new StringBuilder(productName);
+            StringBuilder productPriceBuilder = new StringBuilder(productPrice);
+
+            while(productIdBuilder.length() < 8) {
+                productIdBuilder.append(" ");
             }
-            while(productName.length() < 30) {
-                productName += " ";
+            while(productNameBuilder.length() < 30) {
+                productNameBuilder.append(" ");
             }
-            while(productPrice.length() < 8) {
-                productPrice += " ";
+            while(productPriceBuilder.length() < 8) {
+                productPriceBuilder.append(" ");
             }
+
+            productId = productIdBuilder.toString();
+            productName = productNameBuilder.toString();
+            productPrice = productPriceBuilder.toString();
 
             String line = productId + productName + productPrice + productQuantity;
             if(isReady) {
@@ -108,19 +116,26 @@ public class CRUD1 {
     private static void update() throws IOException {
         System.out.println("Enter ID");
         String productID = scanner.nextLine();
-        System.out.println("Enter the new product(productName:price:quantity");
+        System.out.println("Enter the new product(productName:price:quantity)");
         String[] newProduct = scanner.nextLine().split(":");
         String productName = newProduct[0];
         String productPrice = newProduct[1];
         String productQuantity = newProduct[2];
-        while(productName.length() < 30){
-            productName += " ";
-        }
-        while(productPrice.length() < 8){
-            productPrice += " ";
-        }
-        ArrayList<String> list = new ArrayList<>();
 
+        StringBuilder productNameBuilder = new StringBuilder(productName);
+        StringBuilder productPriceBuilder = new StringBuilder(productPrice);
+
+        while(productNameBuilder.length() < 30) {
+            productNameBuilder.append(" ");
+        }
+        while(productPriceBuilder.length() < 8) {
+            productPriceBuilder.append(" ");
+        }
+
+        productName = productNameBuilder.toString();
+        productPrice = productPriceBuilder.toString();
+
+        ArrayList<String> list = new ArrayList<>();
         while(bufferedReader.ready()) {
             String line = bufferedReader.readLine();
             String id = line.substring(0,8);
